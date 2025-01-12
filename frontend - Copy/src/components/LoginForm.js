@@ -8,7 +8,7 @@ const LoginForm = ({ setToken }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const { data } = await axios.post(`${import.meta.env.VITE_APP_API_URL}/auth/login`, { email, password });
       setToken(data.token);
     } catch (err) {
       console.error(err.response.data.message);
@@ -25,4 +25,3 @@ const LoginForm = ({ setToken }) => {
 };
 
 export default LoginForm;
-
