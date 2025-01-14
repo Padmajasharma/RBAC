@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { theme } from "../store/theme";
-import lock from "../media/lock.png";
+import a from "../media/a.png";
 
 type NavLinkProps = {
   href: string;
@@ -9,7 +9,10 @@ type NavLinkProps = {
 };
 
 const NavLink: React.FC<NavLinkProps> = ({ href, children }) => (
-  <a href={href} className="text-gray-600 hover:text-gray-900">
+  <a
+    href={href}
+    className="text-gray-700 hover:text-gray-900 transition-colors duration-300"
+  >
     {children}
   </a>
 );
@@ -20,21 +23,25 @@ export default function Home() {
     const token = localStorage.getItem("token");
     if (token) location.href = "/app";
   }, []);
+
   return (
-    <div className="max-h-screen overflow-x-hidden overflow-y-auto scrollbar-hide">
-      <nav className="max-w-7xl min-w-full mx-auto px-4 py-6 ">
+    <div
+      className="h-screen w-full bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${newImage})` }} // Full-screen background image
+    >
+      <nav className="max-w-7xl mx-auto px-6 py-8">
         <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <span className={`font-semibold text-xl text-blue-500`}>
+          <div className="flex items-center space-x-3">
+            <span className="font-semibold text-2xl text-indigo-600">
               Liaplus
             </span>
           </div>
 
-          <div className="flex items-start space-x-8">
+          <div className="flex items-center space-x-6">
             <NavLink href="/app">App</NavLink>
             <NavLink href="/auth">Login</NavLink>
             <button
-              className="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800"
+              className="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-500 transition-colors duration-200"
               onClick={() => (location.href = "/auth")}
             >
               Sign up
@@ -43,32 +50,26 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className="min-h-[80v] flex flex-col justify-center items-center">
-        {/* Navigation */}
-
+      <div className="flex justify-center items-center h-full px-4">
         {/* Hero Section */}
-        <main className="flex justify-center">
-          <div className="text-left h-[80vh]  flex flex-col justify-center items-start">
-            <h1
-              className={`text-4xl font-bold mb-6 ${
-                Theme === "light" ? `text-gray-600` : `text-gray-50`
-              }`}
-            >
-              Role-Based Access Control (RBAC)
-            </h1>
-            <p
-              className={`text-xl  max-w-xl ${
-                Theme === "light" ? `text-gray-600` : `text-gray-50`
-              }`}
-            >
-              We Provide you Safe and Reliable Role Based Access Controll System
-              for you and your team.
-            </p>
-          </div>
-          <div className=" h-[80vh]">
-            <img src={lock} alt="lock" className=" z-1" />
-          </div>
-        </main>
+        <div className="text-center max-w-2xl mx-auto space-y-6 text-white">
+          <h1
+            className={`text-5xl font-semibold ${
+              Theme === "light" ? "text-gray-800" : "text-gray-100"
+            }`}
+          >
+            Role-Based Access Control (RBAC)
+          </h1>
+          <p
+            className={`text-xl ${
+              Theme === "light" ? "text-gray-700" : "text-gray-300"
+            }`}
+          >
+            We provide a safe and reliable Role-Based Access Control (RBAC)
+            system for you and your team to ensure secure access and seamless
+            operations.
+          </p>
+        </div>
       </div>
     </div>
   );
