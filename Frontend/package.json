@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@nextui-org/alert": "^2.2.9",
